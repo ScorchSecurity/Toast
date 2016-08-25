@@ -5,8 +5,6 @@ typedef NTSTATUS(NTAPI *fnNtMapViewOfSection)(HANDLE, HANDLE, PVOID, ULONG_PTR, 
 
 // I know that globals are bad, but this will increase friendliness
 HMODULE _Resolved_NTDLL_ = NULL;
-HMODULE _Resolved_KERNEL32 = NULL;
-HMODULE _Resolved_USER32 = NULL;
 
 void *ResolveFunction(HMODULE module, const char *proc_name)
 {
