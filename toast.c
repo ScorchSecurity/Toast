@@ -6,6 +6,12 @@ typedef NTSTATUS(NTAPI *fnNtMapViewOfSection)(HANDLE, HANDLE, PVOID, ULONG_PTR, 
 // I know that globals are bad, but this will increase friendliness
 HMODULE _Resolved_NTDLL_ = NULL;
 
+FORCEINLINE VOID NewRtlInitUnicodeString(PUNICODE_STRING DestinationString, PWSTR SourceString)
+{
+	DestinationString->Buffer = SourceString;
+	DestinationString->MaximumLength = DestinationString->Length = wcslen(SourceString) * sizeof(WCHAR);
+}
+
 void *ResolveFunction(HMODULE module, const char *proc_name)
 {
 	char *pBaseAddress = (char *)module;
